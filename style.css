@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f4ef;
+  color: #2d2d2d;
+  line-height: 1.6;
+}
+
+.hero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #2f3e35;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+}
+
+.button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: #d6a45d;
+  color: #1f1f1f;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+main {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  border-bottom: 2px solid #d6a45d;
+  padding-bottom: 0.4rem;
+}
+
+.project-card {
+  background: white;
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+a {
+  color: #8a5a1f;
+}
