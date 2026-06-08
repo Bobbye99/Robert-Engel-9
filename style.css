@@ -393,3 +393,241 @@ body {font-family: Arial, Helvetica, sans-serif;background-color: #f7f5f0;color:
 .footer-links,.footer-socials {align-items: center;}
 
 .footer-links a,.footer-socials a {transform: none;}
+
+                                                  ```css
+/* =========================================================
+   IMAGE LIGHTBOX
+   Opens gallery images at full size
+========================================================= */
+
+.gallery-item img,
+.design-piece img {
+  cursor: zoom-in;
+}
+
+/* Full-screen background */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 40px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(10, 15, 20, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+/* Show the lightbox */
+.image-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Holds the image and caption */
+.lightbox-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Displays the complete image without cropping */
+.lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 130px);
+  object-fit: contain;
+  object-position: center;
+  border-radius: 8px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+  cursor: zoom-out;
+}
+
+/* Image description */
+.lightbox-caption {
+  max-width: 800px;
+  margin-top: 14px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Close button */
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.lightbox-close:hover {
+  background-color: #b36b3c;
+  transform: scale(1.06);
+}
+
+/* Prevent the page from scrolling while an image is open */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 650px) {
+  .image-lightbox {
+    padding: 70px 14px 24px;
+  }
+
+  .lightbox-image {
+    max-height: calc(100vh - 140px);
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox-caption {
+    font-size: 0.85rem;
+  }
+}
+```
+
+### 2. Paste this at the bottom of `script.js`
+
+```javascript
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryImages = document.querySelectorAll(
+    ".gallery-item img, .design-piece img"
+  );
+
+  if (galleryImages.length === 0) {
+    return;
+  }
+
+  // Create the lightbox.
+  const lightbox = document.createElement("div");
+  lightbox.className = "image-lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "Full-size image preview");
+
+  lightbox.innerHTML = `
+    <button
+      class="lightbox-close"
+      type="button"
+      aria-label="Close full-size image"
+    >
+      &times;
+    </button>
+
+    <div class="lightbox-content">
+      <img class="lightbox-image" src="" alt="">
+      <p class="lightbox-caption"></p>
+    </div>
+  `;
+
+  document.body.appendChild(lightbox);
+
+  const lightboxImage = lightbox.querySelector(".lightbox-image");
+  const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+  const closeButton = lightbox.querySelector(".lightbox-close");
+
+  let previouslyFocusedElement = null;
+
+  function openLightbox(image) {
+    previouslyFocusedElement = document.activeElement;
+
+    const imageSource = image.currentSrc || image.src;
+    const imageDescription = image.alt || "Portfolio image";
+
+    lightboxImage.src = imageSource;
+    lightboxImage.alt = imageDescription;
+    lightboxCaption.textContent = imageDescription;
+
+    lightbox.classList.add("active");
+    document.body.classList.add("lightbox-open");
+
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    document.body.classList.remove("lightbox-open");
+
+    lightboxImage.src = "";
+    lightboxImage.alt = "";
+    lightboxCaption.textContent = "";
+
+    if (previouslyFocusedElement) {
+      previouslyFocusedElement.focus();
+    }
+  }
+
+  galleryImages.forEach((image) => {
+    image.setAttribute("tabindex", "0");
+    image.setAttribute("role", "button");
+    image.setAttribute("aria-label", `${image.alt}. Open full-size image.`);
+
+    image.addEventListener("click", () => {
+      openLightbox(image);
+    });
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    });
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  lightboxImage.addEventListener("click", closeLightbox);
+
+  // Close when clicking the dark background.
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Close by pressing Escape.
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      lightbox.classList.contains("active")
+    ) {
+      closeLightbox();
+    }
+  });
+});
+```
+
