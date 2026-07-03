@@ -1388,3 +1388,126 @@ body.lightbox-open {
     font-size: 0.85rem;
   }
 }
+
+/* ================================
+   HERO PROFILE BEACH CARD
+================================ */
+
+.beach-profile-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 430px;
+  padding: 38px;
+  border-radius: 34px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(245, 247, 248, 0.32) 0%,
+      rgba(245, 247, 248, 0.72) 48%,
+      rgba(245, 247, 248, 0.96) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(245, 247, 248, 0.95) 0%,
+      rgba(245, 247, 248, 0.72) 45%,
+      rgba(245, 247, 248, 0.38) 100%
+    ),
+    url("Beach (3).JPG");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  box-shadow: 0 28px 70px rgba(22, 32, 42, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* Soft creative glow overlay */
+.beach-profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 85% 12%,
+      rgba(179, 107, 60, 0.16),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 15% 85%,
+      rgba(255, 255, 255, 0.75),
+      transparent 35%
+    );
+
+  pointer-events: none;
+}
+
+/* Keeps card content above the background */
+.beach-profile-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Replaces the RE initials box */
+.hero-profile-image {
+  width: 128px;
+  height: 128px;
+  margin-bottom: 72px;
+
+  border-radius: 28px;
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 4px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 18px 35px rgba(22, 32, 42, 0.22);
+}
+
+.hero-profile-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Makes the text readable over the beach image */
+.beach-profile-card .hero-card-content {
+  max-width: 330px;
+}
+
+.beach-profile-card .hero-card-content h2 {
+  color: #1d2a35;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.65);
+}
+
+.beach-profile-card .hero-card-content p {
+  color: #6b5849;
+  font-weight: 700;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.75);
+}
+
+.beach-profile-card .hero-tags span {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(22, 32, 42, 0.08);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .beach-profile-card {
+    min-height: 390px;
+    padding: 30px;
+    background-position: center;
+  }
+
+  .hero-profile-image {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 58px;
+  }
+}
