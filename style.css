@@ -109,7 +109,6 @@ a {
 }
 
 #about,
-#experience,
 #photography,
 #video,
 #design,
@@ -121,7 +120,6 @@ a {
 .header-container,
 .hero-container,
 .about-container,
-.experience-container,
 .photography-container,
 .video-container,
 .design-container,
@@ -134,7 +132,6 @@ a {
 }
 
 .about-section,
-.experience-section,
 .photography-section,
 .video-section,
 .design-section,
@@ -195,8 +192,7 @@ p {
 
 .section-eyebrow,
 .video-category,
-.marketing-category,
-.experience-date {
+.marketing-category {
   margin-bottom: 0.7rem;
   color: var(--color-teal-dark);
   font-size: 0.76rem;
@@ -641,78 +637,6 @@ p {
 }
 
 /* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.experience-section {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
-    var(--color-teal-pale);
-}
-
-.experience-section::after {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  right: -170px;
-  bottom: -170px;
-  border: 26px solid rgba(86, 160, 172, 0.12);
-  border-radius: 50%;
-  content: "";
-}
-
-.experience-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-.experience-card {
-  padding: clamp(1.6rem, 3vw, 2.3rem);
-  border: 1px solid rgba(86, 160, 172, 0.24);
-  border-radius: var(--radius-medium);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: var(--shadow-small);
-}
-
-.experience-card.featured-experience {
-  grid-row: span 2;
-  border-top: 5px solid var(--color-teal);
-}
-
-.experience-card h3 {
-  color: var(--color-charcoal-dark);
-}
-
-.experience-organization {
-  margin-bottom: 1.2rem;
-  color: var(--color-teal-dark);
-  font-weight: 800;
-}
-
-.experience-card > p:last-child {
-  margin-bottom: 0;
-}
-
-.experience-card ul {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--color-text-soft);
-}
-
-.experience-card li + li {
-  margin-top: 0.7rem;
-}
-
-.experience-card li::marker {
-  color: var(--color-teal);
-}
-
-/* =========================================================
    PHOTOGRAPHY
 ========================================================= */
 
@@ -733,28 +657,17 @@ p {
 
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-flow: dense;
-  grid-auto-rows: 175px;
-  gap: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .gallery-item {
   position: relative;
-  grid-column: span 4;
-  grid-row: span 2;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-small);
   background: var(--color-charcoal-deep);
-}
-
-.gallery-item.tall {
-  grid-row: span 3;
-}
-
-.gallery-item.wide {
-  grid-column: span 8;
 }
 
 .gallery-item::after {
@@ -911,15 +824,12 @@ p {
 
 .design-gallery {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-flow: dense;
-  grid-auto-rows: 165px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
 .design-piece {
-  grid-column: span 4;
-  grid-row: span 2;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-small);
@@ -929,19 +839,6 @@ p {
   transition:
     transform var(--transition),
     box-shadow var(--transition);
-}
-
-.design-piece.large {
-  grid-column: span 8;
-  grid-row: span 3;
-}
-
-.design-piece.tall {
-  grid-row: span 3;
-}
-
-.design-piece.wide {
-  grid-column: span 8;
 }
 
 .design-piece:hover {
@@ -974,14 +871,19 @@ p {
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
   gap: 1.25rem;
 }
 
 .result-card {
   position: relative;
+  min-width: 0;
+  height: 100%;
   padding: clamp(1.6rem, 3.5vw, 2.4rem);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-medium);
   background: var(--color-surface);
@@ -996,27 +898,6 @@ p {
   width: 4px;
   background: var(--color-teal);
   content: "";
-}
-
-.result-card.featured-result {
-  grid-column: 1 / -1;
-  background:
-    radial-gradient(circle at 95% 0%, rgba(86, 160, 172, 0.2), transparent 30%),
-    var(--color-charcoal);
-  color: var(--color-white);
-}
-
-.result-card.featured-result h3 {
-  color: var(--color-white);
-}
-
-.result-card.featured-result > p,
-.result-card.featured-result .campaign-details span {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.result-card.featured-result .marketing-category {
-  color: var(--color-teal-light);
 }
 
 .result-top {
@@ -1037,11 +918,19 @@ p {
   color: var(--color-charcoal-dark);
 }
 
+.result-card > p {
+  flex-grow: 1;
+}
+
 .metric-row {
   margin-top: 1.4rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
+}
+
+.metric-box:only-child {
+  grid-column: 1 / -1;
 }
 
 .metric-box {
@@ -1057,7 +946,7 @@ p {
   overflow-wrap: anywhere;
   color: var(--color-teal-dark);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
   line-height: 1.08;
 }
 
@@ -1072,21 +961,8 @@ p {
   text-transform: uppercase;
 }
 
-.featured-result .metric-box {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.featured-result .metric-box strong {
-  color: var(--color-teal-light);
-}
-
-.featured-result .metric-box span {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .campaign-details {
-  margin-top: 1.25rem;
+  margin-top: auto;
   padding-top: 1.1rem;
   display: flex;
   flex-wrap: wrap;
@@ -1098,10 +974,6 @@ p {
   color: var(--color-text-soft);
   font-size: 0.76rem;
   font-weight: 700;
-}
-
-.featured-result .campaign-details {
-  border-top-color: rgba(255, 255, 255, 0.13);
 }
 
 /* =========================================================
@@ -1408,6 +1280,10 @@ p {
     gap: 3rem;
   }
 
+  .results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .tiktok-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1499,42 +1375,13 @@ p {
     aspect-ratio: 16 / 12;
   }
 
-  .experience-grid,
   .results-grid {
     grid-template-columns: 1fr;
-  }
-
-  .experience-card.featured-experience {
-    grid-row: auto;
-  }
-
-  .result-card.featured-result {
-    grid-column: auto;
   }
 
   .photo-gallery,
   .design-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 190px;
-  }
-
-  .gallery-item,
-  .gallery-item.wide,
-  .design-piece,
-  .design-piece.wide,
-  .design-piece.large {
-    grid-column: span 1;
-  }
-
-  .gallery-item,
-  .design-piece {
-    grid-row: span 2;
-  }
-
-  .gallery-item.tall,
-  .design-piece.tall,
-  .design-piece.large {
-    grid-row: span 3;
   }
 
   .footer-container {
@@ -1558,7 +1405,6 @@ p {
   .header-container,
   .hero-container,
   .about-container,
-  .experience-container,
   .photography-container,
   .video-container,
   .design-container,
@@ -1610,18 +1456,6 @@ p {
   .photo-gallery,
   .design-gallery {
     grid-template-columns: 1fr;
-    grid-auto-rows: 220px;
-  }
-
-  .gallery-item,
-  .gallery-item.wide,
-  .gallery-item.tall,
-  .design-piece,
-  .design-piece.wide,
-  .design-piece.tall,
-  .design-piece.large {
-    grid-column: 1;
-    grid-row: span 2;
   }
 
   .featured-video {
@@ -1629,7 +1463,6 @@ p {
   }
 
   .result-card,
-  .experience-card,
   .contact-card {
     padding: 1.35rem;
   }
@@ -1694,193 +1527,4 @@ p {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* =========================================================
-   FINAL BRAND COLOR OVERRIDE
-   KEEP THIS SECTION AT THE VERY BOTTOM OF THE STYLESHEET.
-   It prevents older tan/orange rules from overriding the
-   Robert Engel Photography charcoal-and-teal palette.
-========================================================= */
-
-:root {
-  --color-charcoal: #404040;
-  --color-charcoal-dark: #282d2e;
-  --color-charcoal-deep: #1d2122;
-  --color-teal: #56a0ac;
-  --color-teal-dark: #327783;
-  --color-teal-light: #9fcfd6;
-  --color-teal-pale: #e7f3f5;
-  --color-silver: #d1d1d1;
-  --color-white: #ffffff;
-  --color-page: #f5f8f9;
-  --color-surface: #ffffff;
-  --color-surface-muted: #eaf2f3;
-  --color-text: #303638;
-  --color-text-soft: #667174;
-  --color-border: #d7e4e6;
-}
-
-html,
-body {
-  background-color: #f5f8f9 !important;
-  color: #303638 !important;
-}
-
-.site-header,
-.nav-menu {
-  background-color: #282d2e !important;
-}
-
-.site-header::after {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #56a0ac,
-    #ffffff,
-    #56a0ac,
-    transparent
-  ) !important;
-}
-
-.hero-section {
-  background:
-    radial-gradient(circle at 82% 18%, rgba(86, 160, 172, 0.25), transparent 31%),
-    radial-gradient(circle at 12% 88%, rgba(86, 160, 172, 0.13), transparent 32%),
-    linear-gradient(135deg, #404040 0%, #282d2e 70%) !important;
-}
-
-.photography-section {
-  background:
-    radial-gradient(circle at 10% 10%, rgba(86, 160, 172, 0.16), transparent 28%),
-    #282d2e !important;
-}
-
-.contact-section {
-  background:
-    radial-gradient(circle at 86% 18%, rgba(86, 160, 172, 0.26), transparent 28%),
-    #404040 !important;
-}
-
-.site-footer {
-  background-color: #1d2122 !important;
-}
-
-.about-section,
-.video-section,
-.design-section {
-  background-color: #ffffff !important;
-}
-
-.experience-section {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
-    #e7f3f5 !important;
-}
-
-.marketing-section {
-  background:
-    linear-gradient(135deg, rgba(86, 160, 172, 0.09), transparent 45%),
-    #eaf2f3 !important;
-}
-
-.hero-content h1 span,
-.section-eyebrow,
-.video-category,
-.marketing-category,
-.experience-date,
-.logo-title,
-.experience-organization,
-.contact-info-item > span {
-  color: #327783 !important;
-}
-
-.hero-section .section-eyebrow,
-.photography-section .section-eyebrow,
-.contact-section .section-eyebrow,
-.featured-result .marketing-category,
-.logo-title,
-.contact-info-item > span {
-  color: #9fcfd6 !important;
-}
-
-.primary-btn,
-.nav-menu .contact-btn {
-  border-color: #56a0ac !important;
-  background-color: #56a0ac !important;
-  color: #1d2122 !important;
-}
-
-.primary-btn:hover,
-.nav-menu .contact-btn:hover {
-  border-color: #9fcfd6 !important;
-  background-color: #9fcfd6 !important;
-  color: #1d2122 !important;
-}
-
-.secondary-btn:hover {
-  border-color: #56a0ac !important;
-  background-color: #e7f3f5 !important;
-  color: #327783 !important;
-}
-
-.nav-menu > a:not(.contact-btn)::after,
-.highlight-card::before,
-.result-card::before {
-  background-color: #56a0ac !important;
-}
-
-.highlight-card,
-.experience-card,
-.featured-video,
-.tiktok-card,
-.design-piece,
-.result-card {
-  border-color: #d7e4e6 !important;
-}
-
-.highlight-card,
-.featured-video,
-.tiktok-card,
-.result-card {
-  background-color: #ffffff !important;
-}
-
-.social-metric-box,
-.metric-box {
-  border-color: rgba(86, 160, 172, 0.2) !important;
-  background-color: #e7f3f5 !important;
-}
-
-.social-metric-box strong,
-.metric-box strong {
-  color: #327783 !important;
-}
-
-.result-card.featured-result {
-  background:
-    radial-gradient(circle at 95% 0%, rgba(86, 160, 172, 0.21), transparent 30%),
-    #404040 !important;
-  color: #ffffff !important;
-}
-
-.result-card.featured-result .metric-box {
-  border-color: rgba(255, 255, 255, 0.13) !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-.result-card.featured-result .metric-box strong {
-  color: #9fcfd6 !important;
-}
-
-.contact-socials a:hover,
-#portfolioModalClose:hover,
-.portfolio-modal-arrow:hover {
-  background-color: #327783 !important;
-  color: #ffffff !important;
-}
-
-::selection {
-  background-color: #56a0ac !important;
-  color: #ffffff !important;
 }
