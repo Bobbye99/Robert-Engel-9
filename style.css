@@ -1695,3 +1695,192 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =========================================================
+   FINAL BRAND COLOR OVERRIDE
+   KEEP THIS SECTION AT THE VERY BOTTOM OF THE STYLESHEET.
+   It prevents older tan/orange rules from overriding the
+   Robert Engel Photography charcoal-and-teal palette.
+========================================================= */
+
+:root {
+  --color-charcoal: #404040;
+  --color-charcoal-dark: #282d2e;
+  --color-charcoal-deep: #1d2122;
+  --color-teal: #56a0ac;
+  --color-teal-dark: #327783;
+  --color-teal-light: #9fcfd6;
+  --color-teal-pale: #e7f3f5;
+  --color-silver: #d1d1d1;
+  --color-white: #ffffff;
+  --color-page: #f5f8f9;
+  --color-surface: #ffffff;
+  --color-surface-muted: #eaf2f3;
+  --color-text: #303638;
+  --color-text-soft: #667174;
+  --color-border: #d7e4e6;
+}
+
+html,
+body {
+  background-color: #f5f8f9 !important;
+  color: #303638 !important;
+}
+
+.site-header,
+.nav-menu {
+  background-color: #282d2e !important;
+}
+
+.site-header::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #56a0ac,
+    #ffffff,
+    #56a0ac,
+    transparent
+  ) !important;
+}
+
+.hero-section {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(86, 160, 172, 0.25), transparent 31%),
+    radial-gradient(circle at 12% 88%, rgba(86, 160, 172, 0.13), transparent 32%),
+    linear-gradient(135deg, #404040 0%, #282d2e 70%) !important;
+}
+
+.photography-section {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(86, 160, 172, 0.16), transparent 28%),
+    #282d2e !important;
+}
+
+.contact-section {
+  background:
+    radial-gradient(circle at 86% 18%, rgba(86, 160, 172, 0.26), transparent 28%),
+    #404040 !important;
+}
+
+.site-footer {
+  background-color: #1d2122 !important;
+}
+
+.about-section,
+.video-section,
+.design-section {
+  background-color: #ffffff !important;
+}
+
+.experience-section {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    #e7f3f5 !important;
+}
+
+.marketing-section {
+  background:
+    linear-gradient(135deg, rgba(86, 160, 172, 0.09), transparent 45%),
+    #eaf2f3 !important;
+}
+
+.hero-content h1 span,
+.section-eyebrow,
+.video-category,
+.marketing-category,
+.experience-date,
+.logo-title,
+.experience-organization,
+.contact-info-item > span {
+  color: #327783 !important;
+}
+
+.hero-section .section-eyebrow,
+.photography-section .section-eyebrow,
+.contact-section .section-eyebrow,
+.featured-result .marketing-category,
+.logo-title,
+.contact-info-item > span {
+  color: #9fcfd6 !important;
+}
+
+.primary-btn,
+.nav-menu .contact-btn {
+  border-color: #56a0ac !important;
+  background-color: #56a0ac !important;
+  color: #1d2122 !important;
+}
+
+.primary-btn:hover,
+.nav-menu .contact-btn:hover {
+  border-color: #9fcfd6 !important;
+  background-color: #9fcfd6 !important;
+  color: #1d2122 !important;
+}
+
+.secondary-btn:hover {
+  border-color: #56a0ac !important;
+  background-color: #e7f3f5 !important;
+  color: #327783 !important;
+}
+
+.nav-menu > a:not(.contact-btn)::after,
+.highlight-card::before,
+.result-card::before {
+  background-color: #56a0ac !important;
+}
+
+.highlight-card,
+.experience-card,
+.featured-video,
+.tiktok-card,
+.design-piece,
+.result-card {
+  border-color: #d7e4e6 !important;
+}
+
+.highlight-card,
+.featured-video,
+.tiktok-card,
+.result-card {
+  background-color: #ffffff !important;
+}
+
+.social-metric-box,
+.metric-box {
+  border-color: rgba(86, 160, 172, 0.2) !important;
+  background-color: #e7f3f5 !important;
+}
+
+.social-metric-box strong,
+.metric-box strong {
+  color: #327783 !important;
+}
+
+.result-card.featured-result {
+  background:
+    radial-gradient(circle at 95% 0%, rgba(86, 160, 172, 0.21), transparent 30%),
+    #404040 !important;
+  color: #ffffff !important;
+}
+
+.result-card.featured-result .metric-box {
+  border-color: rgba(255, 255, 255, 0.13) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.result-card.featured-result .metric-box strong {
+  color: #9fcfd6 !important;
+}
+
+.contact-socials a:hover,
+#portfolioModalClose:hover,
+.portfolio-modal-arrow:hover {
+  background-color: #327783 !important;
+  color: #ffffff !important;
+}
+
+::selection {
+  background-color: #56a0ac !important;
+  color: #ffffff !important;
+}
